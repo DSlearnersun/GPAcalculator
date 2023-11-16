@@ -3,6 +3,27 @@ import streamlit as st
 # pandas (library for data manipulation and analysis)
 import pandas as pd
 
+# Function to change the background color
+def set_bg_color():
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-color: #D0E8F2;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Call the function to change the background color
+set_bg_color()
+
+# Display the logo (replace 'path_to_logo.png' with the path to your logo file or URL)
+st.image('FBLA.png', width=100)  # You can adjust the width as per your requirement
+
+# Your main app code goes here
+# ...
 
 # Define functions for calculations
 # calculate_ap_weight is a function that determines whether weighthed/unweighted
