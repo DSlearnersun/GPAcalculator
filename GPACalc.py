@@ -67,6 +67,8 @@ course_names = []
 grades = []
 credits = []
 
+default_courses = ["Enter a new course name", "AP Human Geography", "Biology", "Band","Chemistry","Physics","Spanish I","Spanish II","Spanish III","Spanish IV","German I","German II","German III","German IV","AP Precalculus","AP Statistics","Accelerated Geometry B/Advanced Algebra Honors","9th Grade Literature","10th Grade Literature"]
+
 # Provide user instructions
 st.write("""
 ### Instructions:
@@ -77,7 +79,18 @@ st.write("""
 
 # using a for loop to iterate to your courses
 for i in range(num_courses):
-    course_name = st.text_input(f"Course Name {i+1}", key=f"Course Name {i+1}")
+    
+    # Let the user select between a default course or entering a new one
+    course_selection = st.selectbox(f"Select or Enter Course Name {i+1}", default_courses, key=f"Course Selection {i+1}")
+
+    # If the user chooses to enter a new course name
+    if course_selection == "Enter a new course name":
+        course_name = st.text_input(f"Enter Course Name {i+1}", key=f"New Course Name {i+1}")
+    else:
+        course_name = course_selection
+        
+    #course_name = st.text_input(f"Course Name {i+1}", key=f"Course Name {i+1}")
+    
     grade = st.number_input(f"Grade {i+1}", key=f"Grade {i+1}")
     credit = st.number_input(f"Credit {i+1}", key=f"Credit {i+1}")
    
