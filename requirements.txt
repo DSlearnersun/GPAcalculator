@@ -1,9 +1,5 @@
-os==0.0
-uuid==1.30
-json==2.0.9
 PyPDF2==1.26.0
 numpy==1.21.2
 openai==0.10.2
-time==0.0
 streamlit==1.10.0
 pandas==1.4.1
