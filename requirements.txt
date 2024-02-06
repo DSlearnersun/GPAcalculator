@@ -3,3 +3,4 @@ numpy==1.21.2
 openai==0.10.2
 streamlit==1.10.0
 pandas==1.4.1
+openai==0.10.2  
