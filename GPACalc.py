@@ -3,6 +3,9 @@ import streamlit as st
 # pandas (library for data manipulation and analysis)
 import pandas as pd
 
+from functions import *  # Make sure functions.py is in the same directory
+
+
 # Function to change the background color
 def set_bg_color():
     st.markdown(
@@ -20,7 +23,7 @@ def set_bg_color():
 set_bg_color()
 
 # Display the logo (replace 'path_to_logo.png' with the path to your logo file or URL)
-st.image('FBLA.png', width=100)  # You can adjust the width as per your requirement
+st.image('FBLA.png', width=200)  # You can adjust the width as per your requirement
 
 # Your main app code goes here
 # ...
@@ -51,7 +54,37 @@ def calculate_weight(grade):
            
     return 0
 
+def main():
 
+     # Use the empty method to create vertical space. Increase the range to add more space.
+    for _ in range(50):  # Adjust the range to push the chat to the bottom
+        st.empty()
+    
+    # Use columns to create a sidebar on the right for the chat feature
+    col1, chat_col = st.columns([10, 21])  # Adjust the ratio to push the chat to the right
+
+    with chat_col:
+
+        # Display the logo (replace 'path_to_logo.png' with the path to your logo file or URL)
+        st.image('Eagle.png', width=200)  # You can adjust the width as per your requirement
+
+        st.header('Ask Eagle')
+        # Provide user instructions
+        st.write("""
+### Eagle FAQ's:
+- Q1: What is GPA ?.
+- Q2: What is difference between weighted and unweighted GPA?.
+- Q3: Could you provide guidance on how to raise my GPA?.
+""")
+   
+        # The text_input now has a key ensuring it's unique
+        user_input = st.text_input("Enter your Query:", key="chat_user_query")
+
+        send_button = st.button("Send", key="send_button")
+        if send_button:
+            st.write("You:", user_input)
+            response = get_assistant_response(user_input)
+            st.write("Eagle:", response)
 
 
 st.title(':blue[GPA Calculator]')
@@ -72,7 +105,9 @@ default_courses = ["Enter a new course name", "AP Human Geography", "Biology", "
 # Provide user instructions
 st.write("""
 ### Instructions:
+- **Numer of courses:** Enter the total number of courses (e.g., 1,2,3,4,5,6,7).
 - **Course Name:** Enter the name of your course (e.g., "AP Physics", "IB Biology").
+- **NOTE: Weighted courses always need to prefix with AP, Dual or IB.
 - **Grade:** Enter your grade as a number (e.g., "85" for 85%).
 - **Credits:** Enter the credit value of the course (e.g., "0.5" or "1").
 """)
@@ -130,3 +165,6 @@ if st.button('Calculate GPA'):
     st.dataframe(df.set_index(df.columns[0]))
     st.markdown(f"**Your Weighted GPA is:** `{GPA:.2f}`")
     st.markdown(f"**Your Unweighted GPA is:** `{Unweighted_GPA:.2f}`")
+
+if __name__ == "__main__":
+    main()
